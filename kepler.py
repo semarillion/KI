@@ -78,7 +78,7 @@ mlp = MLPClassifier(solver='lbfgs',\
                     learning_rate_init=0.1).fit(X_train_scaled, y_train)
 
 linear_svm_cross = cross_val_score(linear_svm,X_scaled,y,cv=3)
-mlp_svm_cross = cross_val_score(mlp_svm_cross,X_scaled,y,cv=3)
+mlp_svm_cross = cross_val_score(mlp,X_scaled,y,cv=3)
 
 print("LinearClassifier:")
 print('Prognose Trainingsdaten:', round(linear_svm.score(X_train_scaled, y_train) * 100, 4), '%')
