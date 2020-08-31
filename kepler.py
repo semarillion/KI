@@ -77,13 +77,18 @@ mlp = MLPClassifier(solver='lbfgs',\
                     alpha=0.01,\
                     learning_rate_init=0.1).fit(X_train_scaled, y_train)
 
+linear_svm_cross = cross_val_score(linear_svm,X_scaled,y,cv=3)
+mlp_svm_cross = cross_val_score(mlp_svm_cross,X_scaled,y,cv=3)
+
 print("LinearClassifier:")
 print('Prognose Trainingsdaten:', round(linear_svm.score(X_train_scaled, y_train) * 100, 4), '%')
 print('Prognose Testdaten:', round(linear_svm.score(X_test_scaled, y_test) * 100, 4), '%\n')
+print('Cross Validierung:',linear_svm_cross)
 
 print("MLP")
 print('Prognose Trainingsdaten:', round(mlp.score(X_train_scaled, y_train) * 100, 4), '%')
 print('Prognose Testdaten:', round(mlp.score(X_test_scaled, y_test) * 100, 4), '%\n')
+pront('Cross Validierung:',mlp_svm_cross)
 
 
 # principal component analysis - 2 componentes
