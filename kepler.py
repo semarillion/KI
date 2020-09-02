@@ -82,13 +82,13 @@ mlp_cross = cross_val_score(mlp, X_scaled, y, cv=3)
 
 print("LinearClassifier:")
 print('Prognose Trainingsdaten:', round(linear_svm.score(X_train_scaled, y_train) * 100, 4), '%')
-print('Prognose Testdaten:', round(linear_svm.score(X_test_scaled, y_test) * 100, 4), '%\n')
-print('Cross Validierung:',linear_svm_cross)
+print('Prognose Testdaten:', round(linear_svm.score(X_test_scaled, y_test) * 100, 4))
+print('Cross Validierung:',linear_svm_cross,'\n')
 
 print("MLP")
 print('Prognose Trainingsdaten:', round(mlp.score(X_train_scaled, y_train) * 100, 4), '%')
-print('Prognose Testdaten:', round(mlp.score(X_test_scaled, y_test) * 100, 4), '%\n')
-pront('Cross Validierung:', mlp_cross)
+print('Prognose Testdaten:', round(mlp.score(X_test_scaled, y_test) * 100, 4))
+print('Cross Validierung:', mlp_cross,'\n')
 
 
 # principal component analysis - 2 componentes
@@ -116,3 +116,19 @@ ax.set_xlabel('1st component')
 ax.set_ylabel('2nd component')
 ax.set_zlabel('3rd component')
 ax.scatter3D(X_pca_3D[:,0],X_pca_3D[:,1],X_pca_3D[:,2],c=[col[x] for x in y])
+
+plt.subplot(121)
+plt.scatter(features.columns,pca.components_[0],c='b')
+plt.xlabel('feature')
+plt.ylabel('variant')
+plt.title("1. Hauptkomponente:\n"\
+          +str(features.columns[pca.components_[0].argmax()])+'\n'\
+          +str(features.columns[pca.components_[0].argmin()]))
+plt.subplot(122)
+plt.scatter(features.columns,pca.components_[1],c='g')
+plt.xlabel('feature')
+plt.ylabel('variant')
+plt.title("2. Hauptkomponente:\n"\
+          +str(features.columns[pca.components_[1].argmax()])+'\n'\
+          +str(features.columns[pca.components_[1].argmin()]))
+plt.show()
