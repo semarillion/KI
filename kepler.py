@@ -1,13 +1,14 @@
+# Prognose ob Exoplant anhand der cumulative data base der NASA
+
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.svm import LinearSVC
 from sklearn.neural_network import MLPClassifier
-from sklearn.preprocessing import MinMaxScaler
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import cross_val_score
 from sklearn.decomposition import PCA
 import matplotlib.pyplot as plt
-from mpl_toolkits import mplot3d
+from mpl_toolkits.mplot3d import Axes3D
 
 pd.set_option('display.max_rows', None)
 pd.set_option('display.max_columns', None)
@@ -110,13 +111,14 @@ plt.title("pca")
 plt.show()
 
 # plot 3d picture
-fig = plt.figure()
+fig = plt.figure(2)
 ax = plt.axes(projection='3d')
 ax.set_xlabel('1st component')
 ax.set_ylabel('2nd component')
 ax.set_zlabel('3rd component')
 ax.scatter3D(X_pca_3D[:,0],X_pca_3D[:,1],X_pca_3D[:,2],c=[col[x] for x in y])
 
+fig = plt.figure(3)
 plt.subplot(121)
 plt.scatter(features.columns,pca.components_[0],c='b')
 plt.xlabel('feature')
